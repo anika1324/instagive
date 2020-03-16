@@ -54,7 +54,7 @@ return $rows;
 
 session_start();
 
-$username = $argv[1];
+$username = $_GET['user'];
 
 
 
