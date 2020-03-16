@@ -10,7 +10,7 @@ if(isset($_POST["submit"])){
           $username=$row['username'];
           $fullname=$row['fullname'];
 ?>
-<a href=""><?php echo $fullname;?></a>
+<a href="profile.php?user=<?php echo $username ?>"><?php echo $fullname;?></a>
 <?php
           echo "\n";
   }
