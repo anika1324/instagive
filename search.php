@@ -10,7 +10,11 @@ if(isset($_POST["submit"])){
           $username=$row['username'];
           $fullname=$row['fullname'];
 ?>
-<a href="profile.php?user=<?php echo $username ?>"><?php echo $fullname;?></a>
+<form method="post">
+        <a href="profile.php?user=<?php echo $username ?>"><?php echo $fullname; ?></a>
+        <input type="submit" name="button1" class="button" value="Follow" />
+        <input type="hidden" name="username" value="<?php echo $username ?>">
+      </form>
 <?php
           echo "\n";
   }
@@ -19,5 +23,20 @@ if(isset($_POST["submit"])){
     echo "Empty search string";
   }
 }
-
+if (isset($_POST['button1'])) {
+  echo "I am following";
+  echo $_POST['username'];
+	$con=mysqli_connect('localhost','root','') or die(mysqli_error());
+	mysqli_select_db($con,'instagive') or die('Cannot select db');
+	session_start();
+	$username = $_POST['username'];
+  $follower= $_SESSION['username'];
+  $sql = "INSERT INTO followers(username, follower) VALUES ('$username', '$follower')";
+	if (mysqli_query($con, $sql)){
+		echo "yayayayayay user has been ADDEDddd";
+	}
+	else {
+		echo "Errrorrrrr adding userr";
+	}
+}
 ?>

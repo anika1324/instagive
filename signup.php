@@ -29,7 +29,7 @@ else {
 }
 }
 else {
-  echo "Post n ot submitted";
+  echo "Post not submitted";
 }
 
 ?>

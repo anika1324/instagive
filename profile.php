@@ -21,13 +21,16 @@
   border-top: 1px solid #c6a7f2;
 
 }
+<?php
+session_start();
+?>
 </style>
 
 <div class="header">
 
 <a href="feed.php" class="logo"><img src= "https://qph.fs.quoracdn.net/main-qimg-06544605342d910b700b9cc055fe860c" width= 70px height= 60px></img>InstaGive</a>
 <div class="header-right">
-<a href= uploads.html> <img src ="uploads.png" width=50px height= 50px></img></a>
+<a href= uploads.php> <img src ="uploads.png" width=50px height= 50px></img></a>
 <a class="active" href="followers.php"> <img src = "heart.png" width = 40px height = 40px></img></a>
 <a href="discoverpeople.php"><img src = "compass.png" width= 50px height= 50px></img></a>
 <a href="profile.php?user=<?php echo $_SESSION['username'] ?>"><img src = "profile.png" width= 50px height = 50px></img></a>
@@ -52,8 +55,7 @@ return $rows;
 
 }
 
-session_start();
-
+if (isset($_GET['user'])) {
 $username = $_GET['user'];
 
 
@@ -110,8 +112,15 @@ $fullname = resultToArray($fullname_result);
 <div id="details">
 <h2><em> <?php echo $username ?> </em></h2>
 <p> <?php echo $numrows ?> posts &nbsp;
-TODO Following &nbsp;
-TODO Followers <br>
+  <?php
+  $following= mysqli_query($con, "SELECT username FROM followers WHERE follower='".$username."'");
+$numrows=mysqli_num_rows($following);
+
+echo $numrows; ?> Following  &nbsp;
+<?php
+$followers= mysqli_query($con, "SELECT follower FROM followers WHERE username='".$username."'");
+$numrows1=mysqli_num_rows($followers);
+ echo $numrows1;?> Followers <br>
 <strong> <?php echo $fullname[0]['fullname'] ?> </strong>
 </div>
 </div>
@@ -140,7 +149,10 @@ for($x=0; $x<$numrows; $x++) {
 <?php
 
 }
-
+}
+else {
+    echo "Unknown user to display profile page...";
+}
 ?>
 </div>
 </body>
