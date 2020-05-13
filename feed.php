@@ -52,7 +52,7 @@ session_start();
  <div class="header">
 <a href="feed.php" class="logo"><img src= "https://qph.fs.quoracdn.net/main-qimg-06544605342d910b700b9cc055fe860c" width= 70px height= 60px></img>InstaGive</a>
 <div class="header-right">
-<a href= uploads.php> <img src ="uploads.png" width=50px height= 50px></img></a>
+<a href= uploads_form.php> <img src ="uploads.png" width=50px height= 50px></img></a>
 <a class="active" href="followers.php"> <img src = "heart.png" width = 40px height = 40px></img></a>
 <a href="discoverpeople.php"><img src = "compass.png" width= 50px height= 50px></img></a>
 <a href="profile.php?user=<?php echo $_SESSION['username'] ?>"><img src = "profile.png" width= 50px height = 50px></img></a>
@@ -73,6 +73,7 @@ mysqli_select_db($con,'instagive') or die('Cannot select db');
 
 $username = $_SESSION['username'];
 $following= mysqli_query($con, "SELECT username FROM followers WHERE follower='".$username."'");
+echo $following;
 $numrows=mysqli_num_rows($following);
 if ($numrows != 0) {
 $rows = resultToArray($following);

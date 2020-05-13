@@ -17,10 +17,10 @@ if(isset($_POST["submit"]))
 
       $sql = "INSERT INTO user_details(username, password, email, fullname) VALUES ('$username','$password','$email','$fullname')";
       if (mysqli_query($con, $sql)){
-        echo "yayayayayay user has been ADDEDddd";
+        echo "The user has been successfully added.";
       }
       else {
-        echo "Errrorrrrr adding userr";
+        echo "Error while adding userr";
       }
   }
 }

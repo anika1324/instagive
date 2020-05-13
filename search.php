@@ -23,7 +23,7 @@ if(isset($_POST["submit"])){
     echo "Empty search string";
   }
 }
-if (isset($_POST['button1'])) {
+if (isset($_POST['follow'])) {
   echo "I am following";
   echo $_POST['username'];
 	$con=mysqli_connect('localhost','root','') or die(mysqli_error());
